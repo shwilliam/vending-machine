@@ -71,6 +71,7 @@ class Coins {
       remainingChange -= this.getValue(nextCoin[0])
     }
 
+    this.set(coinStock)
     return change
   }
 
