@@ -1,4 +1,4 @@
-import VendingMachine from '../lib/vending-machine.js'
+import VendingMachine from '../lib/vending-machine/index.js'
 
 describe('VendingMachine', () => {
   describe('stock.get()', () => {
