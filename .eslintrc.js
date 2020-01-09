@@ -2,6 +2,7 @@ module.exports = {
   env: {
     browser: true,
     es6: true,
+    'jest/globals': true,
   },
   extends: 'eslint:recommended',
   globals: {
@@ -18,4 +19,5 @@ module.exports = {
     quotes: ['error', 'single'],
     semi: ['error', 'never'],
   },
+  plugins: ['jest'],
 }
