@@ -8,7 +8,6 @@ class Stock {
   }
 
   refill(quantity, index, item) {
-    // TODO: return updated stock
     const stockCopy = [...this.stock]
 
     if (this.stock[index]) {
@@ -18,8 +17,17 @@ class Stock {
         stockCopy[index].quantity = quantity
       }
     }
+    // TODO: else if valid item obj passed add at index
 
     this.stock = stockCopy
+    return this.get()
+  }
+
+  purchase(index) {
+    const updatedStock = [...this.stock]
+    updatedStock[index].quantity -= 1
+
+    this.stock = updatedStock
     return this.get()
   }
 }
