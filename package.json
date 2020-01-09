@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "parcel index.html",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm run build && parcel index.html",
+    "build": "babel src -d lib",
+    "test": "jest --watchAll"
   },
   "repository": {
     "type": "git",
@@ -19,7 +20,11 @@
   },
   "homepage": "https://github.com/shwilliam/vending-machine#readme",
   "devDependencies": {
+    "@babel/cli": "^7.7.7",
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
     "eslint": "^6.8.0",
+    "jest-cli": "^24.9.0",
     "parcel-bundler": "^1.12.4"
   }
 }
