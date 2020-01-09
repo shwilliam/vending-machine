@@ -7,8 +7,20 @@ class VendingMachineStock {
     return this.stock
   }
 
-  refill(index, title, quantity) {
+  refill(quantity, index, item) {
     // TODO: return updated stock
+    const stockCopy = [...this.stock]
+
+    if (this.stock[index]) {
+      if (this.stock[index].quantity > 0) {
+        stockCopy[index].quantity += quantity
+      } else {
+        stockCopy[index].quantity = quantity
+      }
+    }
+
+    this.stock = stockCopy
+    return this.get()
   }
 }
 
