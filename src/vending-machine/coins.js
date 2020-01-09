@@ -1,9 +1,33 @@
 class Coins {
   constructor(coins) {
     this.coins = coins
+    this.total = this.calculateTotal(coins)
+  }
+
+  set(coins) {
+    this.coins = coins
+    this.total = this.calculateTotal(coins)
+    return this.total
   }
 
   get() {
+    return this.total
+  }
+
+  refill(coins) {
+    this.set(
+      Object.keys(coins).reduce((acc, coin) => {
+        if (acc[coin] && acc[coin] > 0) {
+          return (acc[coin] = acc[coin] + coins[coin])
+        } else {
+          return {...acc, [coin]: coins[coin]}
+        }
+      }, this.coins),
+    )
+    return this.total
+  }
+
+  calculateTotal() {
     // TODO: cache and return on shallow object compare
     return Object.keys(this.coins).reduce((total, coin) => {
       switch (coin) {
@@ -21,10 +45,6 @@ class Coins {
           return total
       }
     }, 0)
-  }
-
-  refill(coins) {
-    // TODO: return updated total value
   }
 }
 
