@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build && parcel index.html",
+    "start": "parcel serve index.html",
     "build": "babel src -d lib",
-    "test": "npm run build && jest"
+    "build:watch": "babel src -d lib --watch",
+    "test": "jest",
+    "test:watch": "jest --watchAll"
   },
   "repository": {
     "type": "git",
