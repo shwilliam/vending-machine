@@ -1,11 +1,50 @@
-const VendingMachine = require('../lib/vending-machine.js')
+import VendingMachine from '../lib/vending-machine.js'
 
 describe('VendingMachine', () => {
-  describe('getStock()', () => {
-    it('returns 0 if no stock empty', () => {
-      const testMachine = new VendingMachine({})
-      const result = testMachine.getStock()
-      expect(result).toEqual(0)
+  describe('stock.get()', () => {
+    it('returns empty array if stock empty', () => {
+      expect(new VendingMachine().stock.get()).toEqual([])
+    })
+  })
+
+  describe('stock.refill(valid index, valid title, valid quantity)', () => {
+    it('returns updated stock', () => {
+      const machine = new VendingMachine()
+      const item = ['WATER', 4]
+      const index = 0
+
+      const stock = machine.stock.refill(index, ...item)
+
+      expect(stock[index]).toEqual({
+        name: item[0],
+        quantity: item[1],
+      })
+    })
+  })
+
+  describe('coins.get())', () => {
+    it('returns total change', () => {
+      const machine = new VendingMachine([], {
+        DOLLAR: 2,
+        TWO_DOLLAR: 1,
+      })
+      const expectedTotal = 4
+
+      const total = machine.coins.get()
+
+      expect(total).toEqual(expectedTotal)
+    })
+  })
+
+  describe('coins.refill(valid refill obj))', () => {
+    it('returns updated total change', () => {
+      const machine = new VendingMachine()
+      const coins = {NICKEL: 4, DIME: 10}
+      const expectedTotal = 1.2
+
+      const updatedTotal = machine.coins.refill(coins)
+
+      expect(updatedTotal).toEqual(expectedTotal)
     })
   })
 })
