@@ -1,1 +1,3 @@
-console.log('hello world')
+import hello from './lib/vending-machine.js'
+
+console.log(hello)
