@@ -50,7 +50,7 @@ class Coins {
     const coinsValue = this.calculateTotal(coins)
     const changeAmount = coinsValue - amount
 
-    if (changeAmount < 0) return 0
+    if (changeAmount < 0) throw new Error('LOW_PAYMENT')
 
     let remainingChange = changeAmount
     let coinStock = {...this.coins}
