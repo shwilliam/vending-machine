@@ -25,6 +25,21 @@ describe('VendingMachine', () => {
     })
   })
 
+  describe('buy(valid index, valid payment too low)', () => {
+    const machine = new VendingMachine(
+      [{name: 'WATER', quantity: 2, price: 0.73}],
+      {
+        DOLLAR: 2,
+        TWO_DOLLAR: 1,
+        QUARTER: 1,
+      },
+    )
+
+    it(`throws 'LOW_PAYMENT' error`, () => {
+      expect(machine.buy(0, {QUARTER: 1})).toThrowError('LOW_PAYMENT')
+    })
+  })
+
   describe('stock.get()', () => {
     it('returns empty array if stock empty', () => {
       expect(new VendingMachine().stock.get()).toEqual([])
