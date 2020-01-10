@@ -40,6 +40,24 @@ describe('VendingMachine', () => {
     })
   })
 
+  describe('buy(valid index out of stock, valid payment)', () => {
+    const machine = new VendingMachine(
+      [
+        {name: 'WATER', quantity: 2, price: 0.73},
+        {name: 'BANANA', quantity: 0, price: 0.3},
+      ],
+      {
+        DOLLAR: 2,
+        TWO_DOLLAR: 1,
+        QUARTER: 1,
+      },
+    )
+
+    it(`throws 'OUT_OF_STOCK' error`, () => {
+      expect(machine.buy(1, {DOLLAR: 1})).toThrowError('OUT_OF_STOCK')
+    })
+  })
+
   describe('stock.get()', () => {
     it('returns empty array if stock empty', () => {
       expect(new VendingMachine().stock.get()).toEqual([])
