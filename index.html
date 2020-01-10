@@ -9,14 +9,78 @@
   <title>Vending Machine</title>
   <script type="module" src="lib/vending-machine/index.js"></script>
   <script type="module" src="lib/index.js"></script>
+  <link href="/styles.css" rel="stylesheet">
 </head>
 <body>
   <h1>Vending Machine</h1>
   <main>
-    <p id="info-stock"></p>
+    <p id="info-error"></p>
     <p id="info-coins"></p>
     <form action="" id="form-purchase">
-      <input id="input-index" type="number" step="1" min="0">
+      <fieldset>
+        <legend>Vending Machine</legend>
+        <ul id="vending-machine-grid" class="vending-machine-grid">
+        </ul>
+      </fieldset>
+      <fieldset>
+        <legend>Coins</legend>
+        <label class="coin-input__label">
+          Two Dollars
+          <input
+            id="input-two-dollars"
+            name="input-two-dollars"
+            type="number"
+            value="0"
+            step="1"
+            min="0"
+          >
+        </label>
+        <label class="coin-input__label">
+          Dollars
+          <input
+            id="input-dollars"
+            name="input-dollars"
+            type="number"
+            value="0"
+            step="1"
+            min="0"
+          >
+        </label>
+        <label class="coin-input__label">
+          Quarters
+          <input
+            id="input-quarters"
+            name="input-quarters"
+            type="number"
+            value="0"
+            step="1"
+            min="0"
+          >
+        </label>
+        <label class="coin-input__label">
+          Dimes
+          <input
+            id="input-dimes"
+            name="input-dimes"
+            type="number"
+            value="0"
+            step="1"
+            min="0"
+          >
+        </label>
+        <label class="coin-input__label">
+          Nickels
+          <input
+            id="input-nickels"
+            name="input-nickels"
+            type="number"
+            value="0"
+            step="1"
+            min="0"
+          >
+        </label>
+      </fieldset>
+
       <button type="submit">Purchase</button>
     </form>
   </main>
