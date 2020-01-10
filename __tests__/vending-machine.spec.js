@@ -59,6 +59,13 @@ describe('VendingMachine', () => {
   })
 
   describe('stock.get()', () => {
+    it('returns array of stocked items', () => {
+      const stock = [
+        {name: 'WATER', quantity: 2, price: 0.73},
+        {name: 'BANANA', quantity: 0, price: 0.3},
+      ]
+      expect(new VendingMachine(stock).stock.get()).toEqual(stock)
+    })
     it('returns empty array if stock empty', () => {
       expect(new VendingMachine().stock.get()).toEqual([])
     })
