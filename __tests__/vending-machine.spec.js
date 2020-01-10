@@ -47,16 +47,14 @@ describe('VendingMachine', () => {
   })
 
   describe('coins.get()', () => {
-    it('returns total change', () => {
-      const machine = new VendingMachine([], {
+    it('returns change', () => {
+      const coins = {
         DOLLAR: 2,
         TWO_DOLLAR: 1,
-      })
-      const expectedTotal = 4
+      }
+      const machine = new VendingMachine([], coins)
 
-      const total = machine.coins.get()
-
-      expect(total).toEqual(expectedTotal)
+      expect(machine.coins.get()).toEqual(coins)
     })
   })
 

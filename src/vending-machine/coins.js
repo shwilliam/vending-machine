@@ -19,7 +19,7 @@ class Coins {
   }
 
   get() {
-    return this.total
+    return this.coins
   }
 
   getValue(coin) {
