@@ -40,10 +40,13 @@ class Coins {
   }
 
   findLargestCoin(amount, coins) {
-    return COINS.find(([coin, value]) => {
+    const largestCoin = COINS.find(([coin, value]) => {
       const inStock = coins[coin] > 0
       return inStock && amount - value >= 0
     })
+
+    if (!largestCoin) throw new Error('COINS_OUT_OF_STOCK')
+    return largestCoin
   }
 
   purchase(amount, coins) {
