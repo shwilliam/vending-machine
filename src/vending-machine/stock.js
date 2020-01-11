@@ -25,8 +25,11 @@ class Stock {
 
   purchase(index) {
     const updatedStock = [...this.stock]
-    updatedStock[index].quantity -= 1
 
+    if (!updatedStock[index] || updatedStock[index].quantity < 1)
+      throw new Error('OUT_OF_STOCK')
+
+    updatedStock[index].quantity -= 1
     this.stock = updatedStock
     return this.get()
   }

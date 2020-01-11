@@ -10,9 +10,6 @@ class VendingMachine {
   buy(index, coins) {
     const stock = this.stock.get()
     const item = stock && stock[index]
-
-    if (!item || item.quantity < 1) throw new Error('OUT_OF_STOCK')
-
     const change = this.coins.purchase(item.price, coins)
     const updatedStock = this.stock.purchase(index)
 
