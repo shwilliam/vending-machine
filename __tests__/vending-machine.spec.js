@@ -36,7 +36,11 @@ describe('VendingMachine', () => {
     )
 
     it(`throws 'LOW_PAYMENT' error`, () => {
-      expect(machine.buy(0, {QUARTER: 1})).toThrowError('LOW_PAYMENT')
+      try {
+        machine.buy(0, {QUARTER: 1})
+      } catch (e) {
+        expect(e.message).toEqual('LOW_PAYMENT')
+      }
     })
   })
 
@@ -54,7 +58,11 @@ describe('VendingMachine', () => {
     )
 
     it(`throws 'OUT_OF_STOCK' error`, () => {
-      expect(machine.buy(1, {DOLLAR: 1})).toThrowError('OUT_OF_STOCK')
+      try {
+        machine.buy(1, {DOLLAR: 1})
+      } catch (e) {
+        expect(e.message).toEqual('OUT_OF_STOCK')
+      }
     })
   })
 
