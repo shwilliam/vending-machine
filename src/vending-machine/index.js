@@ -10,8 +10,9 @@ class VendingMachine {
   buy(index, coins) {
     const stock = this.stock.get()
     const item = stock && stock[index]
-    const change = this.coins.purchase(item.price, coins)
+    // TODO: check stock and throw e before updating inventory
     const updatedStock = this.stock.purchase(index)
+    const change = this.coins.purchase(item.price, coins)
 
     return [item.name, change, updatedStock]
   }
