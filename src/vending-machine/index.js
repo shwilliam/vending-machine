@@ -1,14 +1,23 @@
 import Stock from './stock'
 import Coins from './coins'
 
-// TODO: jsdoc comments
-
+/**
+ * Represents a vending machine
+ * @constructor
+ * @param {Array.<{name: string, quantity: number, price: number}>} stock - initial item stock
+ * @param {Object.<string, number>} coins - initial coin stock
+ */
 class VendingMachine {
   constructor(stock = [], coins = {}) {
     this.stock = new Stock(stock)
     this.coins = new Coins(coins)
   }
 
+  /**
+   * Purchase vending machine item
+   * @param {number} index - item index
+   * @param {Object.<string, number>} coins - change for purchase
+   */
   buy(index, coins) {
     const stock = this.stock.get()
     const item = stock && stock[index]
