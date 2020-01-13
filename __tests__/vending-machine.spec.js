@@ -136,7 +136,7 @@ describe('VendingMachine', () => {
     })
 
     describe('.refill()', () => {
-      describe('when passed valid params', () => {
+      describe('when stocking existing item', () => {
         it('returns updated stock', () => {
           const machine = new VendingMachine([
             {name: 'WATER', quantity: 2, price: 1},
@@ -149,9 +149,68 @@ describe('VendingMachine', () => {
             price: 1,
           }
 
-          const stock = machine.stock.refill(quantity, index)
+          const stock = machine.stock.refill(index, quantity)
 
           expect(stock[index]).toEqual(expectedItem)
+        })
+      })
+      describe('when stocking new item', () => {
+        it('returns updated stock', () => {
+          const machine = new VendingMachine([
+            {name: 'WATER', quantity: 2, price: 1},
+          ])
+          const quantity = 4
+          const index = 3
+          const newItem = {
+            name: 'BANANA',
+            price: 0.3,
+          }
+
+          const stock = machine.stock.refill(index, quantity, newItem)
+
+          expect(stock[index]).toEqual({...newItem, quantity})
+        })
+      })
+      describe('when stocking new item at existing item index', () => {
+        it('replaces item', () => {
+          const machine = new VendingMachine([
+            {name: 'WATER', quantity: 0, price: 1},
+          ])
+          const quantity = 4
+          const index = 0
+          const newItem = {
+            name: 'BANANA',
+            price: 0.3,
+          }
+
+          const stock = machine.stock.refill(index, quantity, newItem)
+
+          expect(stock[index]).toEqual({...newItem, quantity})
+        })
+      })
+      describe('when restocking item with a new price', () => {
+        it('updates item price', () => {
+          const machine = new VendingMachine([
+            {name: 'WATER', quantity: 2, price: 1},
+          ])
+          const quantity = 4
+          const index = 0
+          const itemUpdate = {
+            price: 0.3,
+          }
+
+          const stock = machine.stock.refill(
+            index,
+            quantity,
+            itemUpdate,
+          )
+
+          // TODO: DRY up tests
+          expect(stock[index]).toEqual({
+            name: 'WATER',
+            quantity: 6,
+            ...itemUpdate,
+          })
         })
       })
     })
