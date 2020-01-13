@@ -16,8 +16,20 @@ describe('VendingMachine', () => {
       it('returns purchased item name', () => {
         expect(purchase[0]).toEqual('WATER')
       })
+      it('removes dispensed coins from inventory', () => {
+        expect(machine.coins.get()).toEqual({
+          DOLLAR: 1,
+          TWO_DOLLAR: 1,
+          QUARTER: 0,
+        })
+      })
       it('returns change in coins', () => {
         expect(purchase[1]).toEqual({DOLLAR: 1, QUARTER: 1})
+      })
+      it('updates stock', () => {
+        expect(machine.stock.get()).toEqual([
+          {name: 'WATER', quantity: 1, price: 0.73},
+        ])
       })
       it('returns updated stock', () => {
         expect(purchase[2]).toEqual([
