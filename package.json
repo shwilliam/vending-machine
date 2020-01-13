@@ -7,7 +7,7 @@
     "start": "parcel serve index.html",
     "build": "babel src -d lib",
     "build:watch": "babel src -d lib --watch",
-    "test": "jest",
+    "test": "jest --coverage",
     "test:watch": "jest --watchAll"
   },
   "repository": {
