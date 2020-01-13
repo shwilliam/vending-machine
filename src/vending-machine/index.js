@@ -1,6 +1,8 @@
 import Stock from './stock'
 import Coins from './coins'
 
+// TODO: jsdoc comments
+
 class VendingMachine {
   constructor(stock = [], coins = {}) {
     this.stock = new Stock(stock)

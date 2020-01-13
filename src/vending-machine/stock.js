@@ -7,17 +7,26 @@ class Stock {
     return this.stock
   }
 
-  refill(quantity, index, item) {
+  refill(index, quantity, item) {
     const stockCopy = [...this.stock]
 
-    if (this.stock[index]) {
+    if (item) {
+      if (stockCopy[index]) {
+        stockCopy[index] = {
+          ...stockCopy[index],
+          ...item,
+          quantity: (stockCopy[index].quantity || 0) + quantity,
+        }
+      } else {
+        stockCopy[index] = {...item, quantity}
+      }
+    } else if (this.stock[index]) {
       if (this.stock[index].quantity > 0) {
         stockCopy[index].quantity += quantity
       } else {
         stockCopy[index].quantity = quantity
       }
     }
-    // TODO: else if valid item obj passed add at index
 
     this.stock = stockCopy
     return this.get()
