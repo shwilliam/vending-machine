@@ -17,6 +17,7 @@ class VendingMachine {
    * Purchase vending machine item
    * @param {number} index - item index
    * @param {Object.<string, number>} coins - change for purchase
+   * @return {Array.<{name: string, change: Object.<string, number>, stock: Array.<{name: string, quantity: number, price: number}>}>} purchase info - array of purchase information
    */
   buy(index, coins) {
     const stock = this.stock.get()

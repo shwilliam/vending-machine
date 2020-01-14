@@ -6,26 +6,50 @@ const COINS = [
   ['NICKEL', 0.05],
 ]
 
+/**
+ * Represents a coin stock
+ * @constructor
+ * @param {Object.<string, number>} coins - initial coin stock
+ */
 class Coins {
   constructor(coins) {
     this.coins = coins
     this.total = this.calculateTotal(coins)
   }
 
+  /**
+   * Set item stock
+   * @param {Object.<string, number>} coins - new coin stock
+   * @return {number} total - value of coins
+   */
   set(coins) {
     this.coins = coins
     this.total = this.calculateTotal(coins)
     return this.total
   }
 
+  /**
+   * Get item stock
+   * @return {Object.<string, number>} coins - coin stock
+   */
   get() {
     return this.coins
   }
 
+  /**
+   * Get coin value
+   * @param {string} coin - coin type
+   * @return {number} value - coin value
+   */
   getValue(coin) {
     return COINS.find(([coinName]) => coinName === coin)[1]
   }
 
+  /**
+   * Refill coin stock
+   * @param {Object.<string, number>} coins - coin quantities
+   * @return {number} total - updated coin stock value
+   */
   refill(coins) {
     this.set(
       Object.keys(coins).reduce((acc, coin) => {
@@ -39,6 +63,12 @@ class Coins {
     return this.total
   }
 
+  /**
+   * Find largest in stock coin
+   * @param {number} amount - coin quantity
+   * @param {Object.<string, number>} coins - coin quantities
+   * @return {string} coin - coin type
+   */
   findLargestCoin(amount, coins) {
     const largestCoin = COINS.find(([coin, value]) => {
       const inStock = coins[coin] > 0
@@ -49,6 +79,12 @@ class Coins {
     return largestCoin[0]
   }
 
+  /**
+   * Process purchase coins
+   * @param {number} amount - purchase value
+   * @param {Object.<string, number>} coins - coin quantities
+   * @return {Object.<string, number>} change - change coins quantities
+   */
   purchase(amount, coins) {
     const coinsValue = this.calculateTotal(coins)
     const changeAmount = coinsValue - amount
@@ -88,6 +124,11 @@ class Coins {
     return change
   }
 
+  /**
+   * Calculate total value of coins
+   * @param {Object.<string, number>} coins - coin quantities
+   * @return {number} total - total coin value
+   */
   calculateTotal(coins) {
     // TODO: cache and return on shallow object compare
     return Object.keys(coins).reduce((total, coin) => {

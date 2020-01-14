@@ -1,12 +1,28 @@
+/**
+ * Represents item stock
+ * @constructor
+ * @param {Array.<{name: string, quantity: number, price: number}>} stock - initial item stock
+ */
 class Stock {
   constructor(stock) {
     this.stock = stock
   }
 
+  /**
+   * Get item stock
+   * @return {Array.<{name: string, quantity: number, price: number}>} stock - item stock
+   */
   get() {
     return this.stock
   }
 
+  /**
+   * Refill item
+   * @param {number} index - item index
+   * @param {number} quantity - item quantity
+   * @param {object} item - item info
+   * @return {Array.<{name: string, quantity: number, price: number}>} stock - item stock
+   */
   refill(index, quantity, item) {
     const stockCopy = [...this.stock]
 
@@ -32,6 +48,11 @@ class Stock {
     return this.get()
   }
 
+  /**
+   * Purchase vending machine item
+   * @param {number} index - item index
+   * @return {Array.<{name: string, quantity: number, price: number}>} stock - item stock
+   */
   purchase(index) {
     const updatedStock = [...this.stock]
 
