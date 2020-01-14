@@ -6,8 +6,8 @@ describe('VendingMachine', () => {
       const machine = new VendingMachine(
         [{name: 'WATER', quantity: 2, price: 0.73}],
         {
-          DOLLAR: 2,
           TWO_DOLLAR: 1,
+          DOLLAR: 2,
           QUARTER: 1,
         },
       )
@@ -16,10 +16,10 @@ describe('VendingMachine', () => {
       it('returns purchased item name', () => {
         expect(purchase[0]).toEqual('WATER')
       })
-      it('removes dispensed coins from inventory', () => {
+      it('updates coins stock', () => {
         expect(machine.coins.get()).toEqual({
           DOLLAR: 1,
-          TWO_DOLLAR: 1,
+          TWO_DOLLAR: 2,
           QUARTER: 0,
         })
       })
