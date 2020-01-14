@@ -46,7 +46,7 @@ class Coins {
     })
 
     if (!largestCoin) throw new Error('COINS_OUT_OF_STOCK')
-    return largestCoin
+    return largestCoin[0]
   }
 
   purchase(amount, coins) {
@@ -57,6 +57,16 @@ class Coins {
 
     let remainingChange = changeAmount
     let coinStock = {...this.coins}
+
+    // include purchase coins in coin stock
+    coinStock = Object.keys(coins).reduce((acc, coin) => {
+      if (acc[coin] && acc[coin] > 0) {
+        return {...acc, [coin]: acc[coin] + coins[coin]}
+      } else {
+        return {...acc, [coin]: coins[coin]}
+      }
+    }, coinStock)
+
     const change = {}
     while (remainingChange > 0.03) {
       const nextCoin = this.findLargestCoin(
@@ -65,13 +75,13 @@ class Coins {
       )
 
       // update coin stock copy
-      coinStock[nextCoin[0]] -= 1
+      coinStock[nextCoin] -= 1
 
       // update change obj
-      if (change[nextCoin[0]]) change[nextCoin[0]]++
-      else change[nextCoin[0]] = 1
+      if (change[nextCoin]) change[nextCoin]++
+      else change[nextCoin] = 1
 
-      remainingChange -= this.getValue(nextCoin[0])
+      remainingChange -= this.getValue(nextCoin)
     }
 
     this.set(coinStock)
