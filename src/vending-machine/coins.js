@@ -9,7 +9,7 @@ const COINS = [
 /**
  * Represents a coin stock
  * @constructor
- * @param {Object.<string, number>} coins - initial coin stock
+ * @param {Object} coins - initial coin stock
  */
 class Coins {
   constructor(coins) {
@@ -19,7 +19,7 @@ class Coins {
 
   /**
    * Set item stock
-   * @param {Object.<string, number>} coins - new coin stock
+   * @param {Object} coins - new coin stock
    * @return {number} total - value of coins
    */
   set(coins) {
@@ -30,7 +30,7 @@ class Coins {
 
   /**
    * Get item stock
-   * @return {Object.<string, number>} coins - coin stock
+   * @param {Object} coins - coin stock
    */
   get() {
     return this.coins
@@ -47,7 +47,7 @@ class Coins {
 
   /**
    * Refill coin stock
-   * @param {Object.<string, number>} coins - coin quantities
+   * @param {Object} coins - coin quantities
    * @return {number} total - updated coin stock value
    */
   refill(coins) {
@@ -66,7 +66,7 @@ class Coins {
   /**
    * Find largest in stock coin
    * @param {number} amount - coin quantity
-   * @param {Object.<string, number>} coins - coin quantities
+   * @param {Object} coins - coin quantities
    * @return {string} coin - coin type
    */
   findLargestCoin(amount, coins) {
@@ -82,8 +82,8 @@ class Coins {
   /**
    * Process purchase coins
    * @param {number} amount - purchase value
-   * @param {Object.<string, number>} coins - coin quantities
-   * @return {Object.<string, number>} change - change coins quantities
+   * @param {Object} coins - coin quantities
+   * @param {Object} change - change coin quantities
    */
   purchase(amount, coins) {
     const coinsValue = this.calculateTotal(coins)
@@ -126,7 +126,7 @@ class Coins {
 
   /**
    * Calculate total value of coins
-   * @param {Object.<string, number>} coins - coin quantities
+   * @param {Object} coins - coin quantities
    * @return {number} total - total coin value
    */
   calculateTotal(coins) {
